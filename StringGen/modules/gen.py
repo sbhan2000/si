@@ -68,7 +68,7 @@ async def gen_session(
     except ValueError:
         return await Anony.send_message(
             user_id,
-            ""**🥤| غير صالحAPI_ID(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**" ",
+            "**🥤| غير صالحAPI_ID(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**",
             reply_markup=retry_key,
         )
 
@@ -96,6 +96,7 @@ async def gen_session(
             user_id,
             ""**🥤| غير صالحAPI_hash(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**" ",
             reply_markup=retry_key,
+        )
      try:
         phone_number = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
