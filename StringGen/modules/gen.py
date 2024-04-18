@@ -43,7 +43,9 @@ async def gen_session(
         ty = f"تيرمكس"
     elif old_pyro:
         ty = f"بايروجرام"
-
+    else:
+        ty = f"بايروجرام"
+        
     await message.reply_text(f"**🥤| تم بدء {ty} استخراج الجلسة...**")
 
     try:
