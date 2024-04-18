@@ -222,7 +222,7 @@ async def gen_session(
         return await Anony.send_message(user_id, f"خطأ : <code>{str(ex)}</code>")
 
     try:
-        txt = "ʜᴇʀᴇ ɪs ʏᴏᴜʀ {0} sᴛʀɪɴɢ sᴇssɪᴏɴ\n\n<code>{1}</code>\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={2}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>\n☠ <b>ɴᴏᴛᴇ :</b> ᴅᴏɴ'ᴛ sʜᴀʀᴇ ɪᴛ ᴡɪᴛʜ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ."
+        txt = "كود جلسة {0} \n\n<code>{1}</code>\n\nمن فضلك قم بالانضمام الى <a href={2}>قـناة الـبوت</a>\n🥤| <b>تحذير :</b> لا تقوم بإعطاء كود الجلسة لاحد ."
         if telethon:
             string_session = client.session.save()
             await client.send_message(
@@ -246,12 +246,12 @@ async def gen_session(
         await client.disconnect()
         await Anony.send_message(
             chat_id=user_id,
-            text=f"<b>{0} كود الجلسة</b> \n\n`{ty}` \n\n<b>🥤| انتبه لا تعطي الرمز لأي أحد يمكنه الدخول لحسابك عبره كما يستطيع حذف حسابك! </b>",
+            text=f"<b>🥤| تم استخراج جلسة {ty} بنجاح \n\n🥤| يرجى فحص الرسائل المحفوظة! </b>",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs",
+                            text="‹ اضغط للذهاب للجلسة ›",
                             url=f"tg://openmessage?user_id={user_id}",
                         )
                     ]
