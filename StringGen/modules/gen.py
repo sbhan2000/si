@@ -46,7 +46,7 @@ async def gen_session(
     else:
         ty = f"بايروجرام"
         
-    await message.reply_text(f"<b>🥤| تم بدء {ty} استخراج الجلسة...</b>")
+    await message.reply_text(f"<b>🥤| تم بدء استخراج الجلسة {ty} ...</b>")
 
     try:
         api_id = await Anony.ask(
@@ -222,7 +222,7 @@ async def gen_session(
         return await Anony.send_message(user_id, f"خطأ : <code>{str(ex)}</code>")
 
     try:
-        txt = "تم استخراج {0} الجلسة. \n\n<b>🥤| يرجى فحص الرسائل المحفوظة!</b>"
+        txt = "تم استخراج جلسة {ty} . \n\n<b>🥤| يرجى فحص الرسائل المحفوظة!</b>"
         if telethon:
             string_session = client.session.save()
             await client.send_message(
