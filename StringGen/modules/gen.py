@@ -97,7 +97,8 @@ async def gen_session(
             "**🥤| غير صالحAPI_hash(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**",
             reply_markup=retry_key,
         )
-     try:
+
+    try:
         phone_number = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
             text="**🥤| يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة\nمثــال 📱: +96479702387**",
