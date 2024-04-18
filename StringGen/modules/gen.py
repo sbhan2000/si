@@ -46,19 +46,19 @@ async def gen_session(
     else:
         ty = f"بايروجرام"
         
-    await message.reply_text(f"**🥤| تم بدء {ty} استخراج الجلسة...**")
+    await message.reply_text(f"<b>🥤| تم بدء {ty} استخراج الجلسة...</b>")
 
     try:
         api_id = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
-            text="**🥤| أرسـل الابب أيـدي الخـاص بـك - Send APP ID Bro ...**",
+            text="<b>🥤| أرسـل الابب أيـدي الخـاص بـك - Send APP ID Bro ...</b>",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
         return await Anony.send_message(
             user_id,
-            "**🥤| لقد تجاوزت الحد الزمني 10 دقائق أعد استخراج الجلسة مرة أخرى.**",
+            "<b>🥤| لقد تجاوزت الحد الزمني 10 دقائق أعد استخراج الجلسة مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
@@ -70,21 +70,21 @@ async def gen_session(
     except ValueError:
         return await Anony.send_message(
             user_id,
-            "**🥤| غير صالحAPI_ID(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**",
+            "<b>🥤| غير صالحAPI_ID(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
     try:
         api_hash = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
-            text="**🥤| أرسـل الأيبـي هـاش الخـاص بـك - Send API HASH Bro...**",
+            text="**🥤| أرسـل الأيبـي هـاش الخـاص بـك - Send API HASH Bro...</b>",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
         return await Anony.send_message(
             user_id,
-            "**🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.**",
+            "<b>🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
@@ -96,21 +96,21 @@ async def gen_session(
     if len(api_hash) < 30:
         return await Anony.send_message(
             user_id,
-            "**🥤| غير صالحAPI_hash(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.**",
+            "<b>🥤| غير صالحAPI_hash(أعد المحاولة).  الخاص بك غير صالح حاول مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
     try:
         phone_number = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
-            text="**🥤| يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة\nمثــال 📱: +96479702387**",
+            text="<b>🥤| يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة\nمثــال 📱: +96479702387</b>",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
         return await Anony.send_message(
             user_id,
-            "**🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.**",
+            "<b>🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
@@ -118,7 +118,7 @@ async def gen_session(
         return
     phone_number = phone_number.text
 
-    await Anony.send_message(user_id, "**🥤| جاري إرسال الكود انتظر قليلًا من فضلكـ...**")
+    await Anony.send_message(user_id, "<b>🥤| جاري إرسال الكود انتظر قليلًا من فضلكـ...</b>")
     if telethon:
         client = TelegramClient(StringSession(), api_id, api_hash)
     elif old_pyro:
@@ -137,26 +137,26 @@ async def gen_session(
     except FloodWait as f:
         return await Anony.send_message(
             user_id,
-            f"**🥤| انتهت مـدة الكـود\nأعـد استخـراج الجلسـة مـرة أخـرى**",
+            f"<b>🥤| انتهت مـدة الكـود\nأعـد استخـراج الجلسـة مـرة أخـرى</b>",
             reply_markup=retry_key,
         )
     except (ApiIdInvalid, ApiIdInvalidError, ApiIdInvalid1):
         return await Anony.send_message(
             user_id,
-            "**🥤| الأيبـي أيـدي والأيبـي هـاش غير صالحـان أعـد استخـراج الجلسـة مـرة أخـرى **",
+            "<b>🥤| الأيبـي أيـدي والأيبـي هـاش غير صالحـان أعـد استخـراج الجلسـة مـرة أخـرى </b>",
             reply_markup=retry_key,
         )
     except (PhoneNumberInvalid, PhoneNumberInvalidError, PhoneNumberInvalid1):
         return await Anony.send_message(
             user_id,
-            "**🥤| رقـم الهـاتف الذي أرسلـته غير صالح أعـد استخـراج الجلسـة مـرة أخـرى.**",
+            "<b>🥤| رقـم الهـاتف الذي أرسلـته غير صالح أعـد استخـراج الجلسـة مـرة أخـرى.</b>",
             reply_markup=retry_key,
         )
 
     try:
         otp = await Anony.ask(
             identifier=(message.chat.id, user_id, None),
-            text=f"**🥤| تحقق من الرسائل في تيليجرام وارسل رمز التحقق\n🥤| قم بإرساله بالشكل التالي**\n1234 => 1 2 3 4\n**🥤| اترك مسافة بين كل رقم**",
+            text=f"<b>🥤| تحقق من الرسائل في تيليجرام وارسل رمز التحقق\n🥤| قم بإرساله بالشكل التالي</b>\n1234 => 1 2 3 4\n<b>🥤| اترك مسافة بين كل رقم</b>",
             filters=filters.text,
             timeout=600,
         )
@@ -165,7 +165,7 @@ async def gen_session(
     except ListenerTimeout:
         return await Anony.send_message(
             user_id,
-            "**🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.**",
+            "<b>🥤| لقد تجاوزت الحد الزمني 5 دقائق أعد استخراج الجلسة مرة أخرى.</b>",
             reply_markup=retry_key,
         )
 
@@ -178,27 +178,27 @@ async def gen_session(
     except (PhoneCodeInvalid, PhoneCodeInvalidError, PhoneCodeInvalid1):
         return await Anony.send_message(
             user_id,
-            "**🥤| الكـود الخـاص بـك غير صالـح\n🥤| أعد استخـراج الجلسـة مـرة أخـرى**",
+            "<b>🥤| الكـود الخـاص بـك غير صالـح\n🥤| أعد استخـراج الجلسـة مـرة أخـرى</b>",
             reply_markup=retry_key,
         )
     except (PhoneCodeExpired, PhoneCodeExpiredError, PhoneCodeExpired1):
         return await Anony.send_message(
             user_id,
-            "**🥤| انتهت مـدة الكـود\n🥤| أعـد استخـراج الجلسـة مـرة أخـرى**",
+            "<b>🥤| انتهت مـدة الكـود\n🥤| أعـد استخـراج الجلسـة مـرة أخـرى</b>",
             reply_markup=retry_key,
         )
     except (SessionPasswordNeeded, SessionPasswordNeededError, SessionPasswordNeeded1):
         try:
             pwd = await Anony.ask(
                 identifier=(message.chat.id, user_id, None),
-                text="**🥤| التحقق بخطوتين مفعل بحسابك لذا قم بإرساله هنا من فضلكـ**",
+                text="<b>🥤| التحقق بخطوتين مفعل بحسابك لذا قم بإرساله هنا من فضلكـ</b>",
                 filters=filters.text,
                 timeout=300,
             )
         except ListenerTimeout:
             return Anony.send_message(
                 user_id,
-                "**🥤| لقد تجاوزت المدة الزمنية يجب عليك إعادة استخراج الجلسة مرة أخرى**",
+                "<b>🥤| لقد تجاوزت المدة الزمنية يجب عليك إعادة استخراج الجلسة مرة أخرى</b>",
                 reply_markup=retry_key,
             )
 
@@ -214,7 +214,7 @@ async def gen_session(
         except (PasswordHashInvalid, PasswordHashInvalidError, PasswordHashInvalid1):
             return await Anony.send_message(
                 user_id,
-                "**🥤| التحقق بخطوتين الذي ادخلته خطأ يرجى إعادة الاستخراج مرة أخرى .**",
+                "<b>🥤| التحقق بخطوتين الذي ادخلته خطأ يرجى إعادة الاستخراج مرة أخرى .</b>",
                 reply_markup=retry_key,
             )
 
@@ -222,7 +222,7 @@ async def gen_session(
         return await Anony.send_message(user_id, f"خطأ : <code>{str(ex)}</code>")
 
     try:
-        txt = "تم استخراج {0} الجلسة. \n\n**🥤| يرجى فحص الرسائل المحفوظة!**"
+        txt = "تم استخراج {0} الجلسة. \n\n<b>🥤| يرجى فحص الرسائل المحفوظة!</b>"
         if telethon:
             string_session = client.session.save()
             await client.send_message(
@@ -246,7 +246,7 @@ async def gen_session(
         await client.disconnect()
         await Anony.send_message(
             chat_id=user_id,
-            text=f"**{0} كود الجلسة** \n\n`{ty}` \n\n**🥤| انتبه لا تعطي الرمز لأي أحد يمكنه الدخول لحسابك عبره كما يستطيع حذف حسابك! **",
+            text=f"<b>{0} كود الجلسة</b> \n\n`{ty}` \n\n<b>🥤| انتبه لا تعطي الرمز لأي أحد يمكنه الدخول لحسابك عبره كما يستطيع حذف حسابك! </b>",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -266,17 +266,17 @@ async def gen_session(
 async def cancelled(message):
     if "/cancel" in message.text:
         await message.reply_text(
-            "» ᴄᴀɴᴄᴇʟʟᴇᴅ ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛɪᴏɴ ᴩʀᴏᴄᴇss.", reply_markup=retry_key
+            "<b>🥤| تم إلغاء استخراج الجلسة!</b>", reply_markup=retry_key
         )
         return True
     elif "/restart" in message.text:
         await message.reply_text(
-            "» sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇsᴛᴀʀᴛᴇᴅ ᴛʜɪs ʙᴏᴛ.", reply_markup=retry_key
+            "<b>🥤| تم ترسيت البوت!</b>", reply_markup=retry_key
         )
         return True
     elif message.text.startswith("/"):
         await message.reply_text(
-            "» ᴄᴀɴᴄᴇʟʟᴇᴅ ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛɪᴏɴ ᴩʀᴏᴄᴇss.", reply_markup=retry_key
+            "<b>🥤| تم إلغاء استخراج الجلسة!</b>", reply_markup=retry_key
         )
         return True
     else:
